@@ -8,7 +8,7 @@ import imagere from '../Images/15-min_prev_ui.png';
 import './Login.css'
 
 const Login = () => {
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
     const { setUser } = useContext(AuthContext)
     const onSubmit = data => {
