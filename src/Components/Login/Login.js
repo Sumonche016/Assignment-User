@@ -8,7 +8,7 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = data => {
-
+        const { username, password } = data
         for (let key in data) {
 
             if (!data[key]) {
@@ -17,7 +17,12 @@ const Login = () => {
             }
         }
 
-        console.log('hii')
+        if (username === 'foo' && password === 'bar') {
+            console.log('loggedin')
+        } else {
+            toast.error('wrong username or password')
+
+        }
 
     }
 
