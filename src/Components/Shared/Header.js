@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import hamburger from '../Images/menu.png'
 import logo from '../Images/Autocomm logo.svg';
 import { Link } from 'react-router-dom';
 import './Header.css'
 
 import { FaTimes } from 'react-icons/fa'
+import { AuthContext } from '../Hooks/AuthContext';
+
 
 const Header = () => {
     const [isopen, setIsopen] = useState(false)
 
+    const { user, setUser } = useContext(AuthContext)
+
     const handleHamburger = () => {
         setIsopen(!isopen)
     }
+
+
+    const logout = () => {
+        localStorage.removeItem("isLogged");
+        setUser(false)
+    }
+
 
     return (
         <div>
@@ -63,7 +74,12 @@ const Header = () => {
 
 
                             <li className='mr-5'><Link to='/'>Home</Link></li>
-                            <li><Link to='/login'>Login</Link></li>
+
+
+                            {
+                                user ? <li onClick={logout}><Link to='/login'>Logout</Link></li> :
+                                    <li><Link to='/login'>Login</Link></li>
+                            }
 
 
 

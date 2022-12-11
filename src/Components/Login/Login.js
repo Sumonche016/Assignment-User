@@ -1,13 +1,16 @@
 import React from 'react';
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { AuthContext } from '../Hooks/AuthContext';
 import imagere from '../Images/15-min_prev_ui.png';
 import './Login.css'
 
 const Login = () => {
     const { register, handleSubmit, reset } = useForm();
     const navigate = useNavigate()
+    const { setUser } = useContext(AuthContext)
     const onSubmit = data => {
         const { username, password } = data
         for (let key in data) {
@@ -19,7 +22,7 @@ const Login = () => {
         }
 
         if (username === 'foo' && password === 'bar') {
-            reset()
+            setUser(true)
             window.localStorage.setItem('isLogged', 'login');
             navigate('/')
 
