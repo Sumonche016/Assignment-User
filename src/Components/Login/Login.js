@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import imagere from '../Images/15-min_prev_ui.png';
 import './Login.css'
 
@@ -7,7 +8,17 @@ const Login = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = data => {
-        console.log(data)
+
+        for (let key in data) {
+
+            if (!data[key]) {
+                toast.error('fill all the field')
+                return
+            }
+        }
+
+        console.log('hii')
+
     }
 
     return (
@@ -33,13 +44,7 @@ const Login = () => {
                                     <label className="label">
                                         <span className="label-text text-[.875rem] font-medium">Username*</span>
                                     </label>
-                                    <input type='text' placeholder='your username' className='input-customize' {...register('username', {
-                                        required: {
-                                            value: true,
-                                            message: 'username reQuired'
-                                        }
-
-                                    }
+                                    <input type='text' placeholder='your username' className='input-customize' {...register('username'
                                     )} />
 
                                 </div>
@@ -49,13 +54,7 @@ const Login = () => {
                                     <label className="label">
                                         <span className="label-text text-[.875rem] font-medium">Password*</span>
                                     </label>
-                                    <input type='password' placeholder='your password' className='input-customize' {...register('password', {
-                                        required: {
-                                            value: true,
-                                            message: 'password is  reQuired'
-                                        }
-
-                                    }
+                                    <input type='password' placeholder='your password' className='input-customize' {...register('password'
                                     )} />
 
                                 </div>
