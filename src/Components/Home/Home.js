@@ -17,7 +17,7 @@ const Home = () => {
 
 
     return (
-        <div>
+        <div className='h-[100vh]'>
             <h1>This is from home</h1>
         </div>
     );

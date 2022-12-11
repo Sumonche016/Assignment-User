@@ -17,7 +17,9 @@ const App = () => {
   useEffect(() => {
     // check auth
     const token = localStorage.getItem("isLogged");
-    if (token !== 'login') {
+    if (token === 'login') {
+      setUser(true)
+    } else {
       setUser(false)
     }
   }, []);

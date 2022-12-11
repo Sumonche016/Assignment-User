@@ -6,16 +6,21 @@ import './Header.css'
 
 import { FaTimes } from 'react-icons/fa'
 import { AuthContext } from '../Hooks/AuthContext';
+import { useEffect } from 'react';
 
 
 const Header = () => {
     const [isopen, setIsopen] = useState(false)
 
     const { user, setUser } = useContext(AuthContext)
+    console.log(user)
 
     const handleHamburger = () => {
         setIsopen(!isopen)
     }
+
+
+
 
 
     const logout = () => {
