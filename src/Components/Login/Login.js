@@ -1,12 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import imagere from '../Images/15-min_prev_ui.png';
 import './Login.css'
 
 const Login = () => {
-    const { register, handleSubmit } = useForm();
-
+    const { register, handleSubmit, reset } = useForm();
+    const navigate = useNavigate()
     const onSubmit = data => {
         const { username, password } = data
         for (let key in data) {
@@ -18,7 +19,11 @@ const Login = () => {
         }
 
         if (username === 'foo' && password === 'bar') {
-            console.log('loggedin')
+            reset()
+            window.localStorage.setItem('isLogged', 'login');
+            navigate('/')
+
+
         } else {
             toast.error('wrong username or password')
 
