@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import hamburger from '../Images/menu.png'
 import logo from '../Images/Autocomm logo.svg';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './Header.css'
 
 import { FaTimes } from 'react-icons/fa'
@@ -13,7 +13,8 @@ const Header = () => {
     const [isopen, setIsopen] = useState(false)
 
     const { user, setUser } = useContext(AuthContext)
-    console.log(user)
+
+    const navigate = useNavigate()
 
     const handleHamburger = () => {
         setIsopen(!isopen)
@@ -25,6 +26,7 @@ const Header = () => {
 
     const logout = () => {
         localStorage.removeItem("isLogged");
+        navigate('/login')
         setUser(false)
     }
 
@@ -46,23 +48,20 @@ const Header = () => {
                             <ul className={`absolute p-8 ${isopen ? 'open' : 'close'}  sidebar top-[5rem] md:hidden bg-[#ffffff]`}>
                                 <FaTimes onClick={() => setIsopen(false)} className='cursor-pointer absolute top-[1rem] right-[.8rem]' />
 
-                                <div>
-                                    <li onClick={() => setIsopen(false)} className='  mb-[10px]'>
-
-                                        <div className='mr-5 header-a-typography cursor-pointer' >
-                                            Logout
-                                        </div>
-                                    </li>
-                                </div>
-                                <div>
-                                    <li onClick={() => setIsopen(false)} className='  mb-[10px]'>
-                                        <a className='mr-5 header-a-typography-mobile' to='/login'>
-                                            Login
-                                        </a>
-                                    </li>
 
 
-                                </div>
+                                {
+
+                                    user && <div>
+                                        <li onClick={() => setIsopen(false)} className='  mb-[10px]'>
+                                            <div onClick={logout} className='mr-5 header-a-typography cursor-pointer' >
+                                                Logout
+                                            </div>
+                                        </li>
+                                    </div>
+                                }
+
+
 
                             </ul>
                         </div>
@@ -75,15 +74,12 @@ const Header = () => {
 
 
 
-
-
-
-                            <li className='mr-5'><Link to='/'>Home</Link></li>
-
-
                             {
                                 user ? <li onClick={logout}><Link to='/login'>Logout</Link></li> :
-                                    <li><Link to='/login'>Login</Link></li>
+                                    <>
+                                        <li><Link to='/login'>Login</Link></li>
+                                        <li className='mr-5'><Link to='/'>Home</Link></li>
+                                    </>
                             }
 
 

@@ -4,7 +4,8 @@ import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useNavigate } from 'react-router-dom';
 import SingleContacts from './SingleContacts';
-
+import 'react-loading-skeleton/dist/skeleton.css'
+import Skeleton from 'react-loading-skeleton';
 const Home = () => {
     const navigate = useNavigate()
 
@@ -53,7 +54,7 @@ const Home = () => {
     };
 
     return (
-        <div className='h-[100vh] flex justify-center pt-20'>
+        <div className='min-h-[100vh] max-h-[100%] flex justify-center pt-20'>
             <div className='md:w-[70%] w-full mx-auto'>
 
 
@@ -73,7 +74,7 @@ const Home = () => {
                     dataLength={singleData.length}
                     next={fetchMoreData}
                     hasMore={true}
-                    loader={<h4>Loading...</h4>}
+                    loader={<Skeleton></Skeleton>}
                 >
 
 

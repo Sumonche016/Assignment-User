@@ -30,6 +30,8 @@ const App = () => {
     <div className='bg-[#E0E5F8]'>
 
       <AuthContext.Provider value={{ user, setUser }}>
+
+
         <Header></Header>
 
         <Routes>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Skeleton from 'react-loading-skeleton'
 
 const SingleContacts = ({ contacts }) => {
 
@@ -25,6 +26,8 @@ const SingleContacts = ({ contacts }) => {
                 <h1 className='text-center md:inline-block hidden'>{postcode}</h1>
             </div>
             <h1 className='w-[30%]'>{gender}</h1>
+
+
         </div>
 
     );
